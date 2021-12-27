@@ -9,15 +9,20 @@ To install filepattern:
   <li>cd to the folder and then "run pip install ." </li>
 </ol>
   
-After installation, use "import pattern" to import the module into Python. The module contains the following classes: FilePattern, StringPattern, and ExternalFilePattern.
-
+After installation, use "import pattern" to import the module into Python. The pattern module contains the following classes: 
+  <ul>
+    <li>[FilePattern](#filepattern</li> 
+    <li>[StringPattern](#stringpattern) </li> 
+    <li>[ExternalFilePattern](#externalfilepattern) </li> 
+  </ul>
 A test is included in the root directory in the file test.py.
+
+
   
-<h2>FilePattern</h2> <br/>
-FilePattern is the normal version of filepattern. 
+##FilePattern
   
-  <h2>StringPattern</h2> <br/>
+##StringPattern
 StringPattern contains all the functionalility of FilePattern, except it takes in a txt file as an input rather than a directory.
   
-  <h2>ExternalFilePattern</h2> <br/>
+##ExternalFilePattern
 ExternalFilePattern has the same functionality as FilePattern, however it processes the input in a specified block size for when the input is too large to store in main memory, or for when the memory use of FilePattern must be restricted.
