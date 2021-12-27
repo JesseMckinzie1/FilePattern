@@ -10,16 +10,10 @@ To install filepattern:
 </ol>
   
 After installation, use "import pattern" to import the module into Python. The pattern module contains the following classes: 
-[FilePattern](#FilePattern)
-  <ul>
-    <li>[FilePattern](#FilePattern)</li> 
-    <li>[StringPattern](#StringPattern) </li> 
-    <li>[ExternalFilePattern](#ExternalFilePattern) </li> 
-  </ul>
-A test is included in the root directory in the file test.py.
+  *[FilePattern](#FilePattern)
+  *[StringPattern](#StringPattern)
+  *[ExternalFilePattern](#ExternalFilePattern)  
 
-
-  
 ## FilePattern
 File pattern
   
