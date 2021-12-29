@@ -21,7 +21,6 @@ Stream::Stream(const string& blockSize) {
     if (!created) {
         throw runtime_error("Could not create temporary file.");
     }
-
     this->outName = tmpdir + "/temp.txt";
     this->infile.open(validFiles);
 }
@@ -36,81 +35,85 @@ void Stream::writeBlock(const vector<string>& vec){
     file.close();
 }
 
-void Stream::writeValidFiles(const p::pair& mapping){
+void Stream::writeValidFiles(const Tuple& mapping){
     counter++;
     ofstream file(validFiles, ios_base::app);
-
-    for(const auto& element: mapping.first){
-        file << element.first << ":" << element.second << '\n';
+    for(const auto& element: get<0>(mapping)){
+        file << element.first << ":" << s::to_string(element.second) << '\n';
     }
 
-    for(const auto& element: mapping.second){
+    for(const auto& element: get<1>(mapping)){
         file << element << ",";
     } 
     file << '\n';
     file.close();
     validFilesEmpty = false;
     if(counter == 1){
-        this->mapSize = mapping.first.size();
+        this->mapSize = get<0>(mapping).size();
         this->infile.open(validFiles);
     }
 }
 
-vector<p::pair> Stream::getValidFilesBlock(){
+vector<Tuple> Stream::getValidFilesBlock(){
 
-    vector<p::pair> vec;
-    p::pair member;
+    if(this->validFilesEmpty){
+        vector<Tuple> empty;
+        return empty; 
+    }
+
+    vector<Tuple> vec;
+    Tuple member;
     
-    long size = sizeof(vector<p::pair>);
+    long size = sizeof(vector<Tuple>);
 
-    map<string, string> map;
+    Map map;
     string str;
     string key, value;
-    int valueLength;
+    int valueLength; 
     size_t pos;
-
+    Types result;
+    map = this->tempMap;
+    
     while(size < blockSize && this->infile >> str){
         
         if (map.size() == (this->mapSize)) {
             size += sizeof(map) + sizeof(vector<string>);
             
-            //sizeof(p::pair) +
+            //sizeof(Tuple) +
             for(const auto& item : map){
-                size += item.first.length() + item.second.length();
+                size += item.first.length() + s::size(item.second);
             }
-            member.first = map;
-
-            member.second.push_back(str);
+            get<0>(member) = map;
+            str.pop_back(); // remove trailing comma
+            get<1>(member).push_back(str);
             vec.push_back(member);
             map.clear();
-            member.second.clear();
+            get<1>(member).clear();
             infile >> str;
-        } 
+        }
 
         pos = str.find(":");
         key = str.substr(0, pos);
         valueLength = str.length() - pos;
         value = str.substr(pos+1, valueLength);
 
-        map[key] = value;
+        if(s::is_number(value)){
+            result = stoi(value);
+        } else {
+            result = value;
+        }
+
+        map[key] = result;
         size += valueLength + pos;
     }
-    /*
-    pos = str.find(":");
-    key = str.substr(0, pos);
-    valueLength = str.length() - pos;
-    value = str.substr(pos+1, valueLength);
     
-
-    map[key] = value;
-    vec.push_back(member);
-    */
     streampos ptr = infile.tellg();
     if(!(this->infile >> str)){
         validFilesEmpty = true;
     }
+    //ptr +=1;
     infile.seekg(ptr, ios::beg);
-        
+    this->tempMap = map;
     return vec;
 }
 
@@ -137,17 +140,3 @@ string Stream::getValidFilesPath(){
 string Stream::getBlockSizeStr(){
     return this->blockSizeStr;
 }
-
-/*
-string Stream::copyValidFiles(const string& newFileName){
-    ifstream infile(this->validFiles);
-
-    string filePath = tmpdir + newFileName;
-    ofstream outfile(filePath);
-
-    outfile << infile.rdbuf();
-
-    return filePath;
-
-}
-*/

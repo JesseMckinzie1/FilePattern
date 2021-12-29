@@ -245,4 +245,8 @@ The output from this example is:
 -----------------
 -----------------
 ```
+<<<<<<< HEAD
 where each group of file is seperated by the dashes. Note that the ```block_size``` argument is provided in bytes (B) in this example, but also has the options for kilobytes (KB), megabytes (MB), and gigabytes (GB).  
+=======
+where each group of file is seperated by the dashes. Note that the ```block_size``` argument is provided in bytes (B) in this example, but also has the options for kilobytes (KB), megabytes (MB), and gigabytes (GB).  
+>>>>>>> Tuple

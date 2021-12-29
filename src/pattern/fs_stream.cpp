@@ -1,16 +1,25 @@
-#include "fs_stream.hpp"
+ #include "fs_stream.hpp"
 
 using namespace std;
-
-FilesystemStream::FilesystemStream(const string& path, bool recursive=false, const string& blockSize="50 MB")
+/**
+ * @brief Construct a new Filesystem Stream object
+ * 
+ * Creates a data stream from a filesystem directory iterator or recursive
+ *
+ * @param path 
+ * @param recursive 
+ * @param blockSize 
+ */
+FilesystemStream::FilesystemStream(const string& path, bool recursive, const string& blockSize)
 :Stream(blockSize){
     this->recurisve = true;
 
     try {
+        // create recursive iterator 
         if(recursive){
             this->recursive_directory_iterator = fs::recursive_directory_iterator(path);
             this->rec_end = fs::end(recursive_directory_iterator);
-        } else{ 
+        } else{ // create directory iterator
             this->directory_iterator = fs::directory_iterator(path); // store iterator for target directory
             this->end = fs::end(directory_iterator);
         }
@@ -32,7 +41,6 @@ vector<string> FilesystemStream::getBlock(){
             current = (*recursive_directory_iterator).path().string();
             //cout << "current: " << current << endl;
         } catch (exception& e){
-            cout << "Error on line 52" << endl;
             cout << e.what() << endl;
         }
         while(this->currentSize(current.length(), previousSize) < blockSize){
@@ -58,7 +66,6 @@ vector<string> FilesystemStream::getBlock(){
         try {
             current = (*directory_iterator).path().string();
         } catch (exception& e){
-            cout << "Error on line 52" << endl;
             cout << e.what() << endl;
         }
         while(this->currentSize(current.length(), previousSize) < blockSize){

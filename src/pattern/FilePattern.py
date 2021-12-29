@@ -1,6 +1,12 @@
 from . import backend
 
 class FilePattern:
+    """
+    In memory version of filepattern.
+
+    FilePattern iterates over a directory, matching filenames to a pattern. 
+    """
+
 
     def __init__(self, path: str, pattern: str, recursive: bool=False):
         """
@@ -46,7 +52,7 @@ class FilePattern:
         except ValueError as e: 
             print(e)
 
-    def get_matching(self, variables: str) -> list:
+    def get_matching(self, **kwargs) -> list:
         """
         Returns variables matching a specific value
 
@@ -55,7 +61,11 @@ class FilePattern:
         :return list: list of matching files
         """
         try:
-            return self._file_pattern.getMatching(variables)
+            mapping = []
+            for key, value in kwargs.items():
+                mapping.append((key, value))
+
+            return self._file_pattern.getMatching(mapping)
         except ValueError as e:
             print(e)
             
