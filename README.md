@@ -245,8 +245,7 @@ The output from this example is:
 -----------------
 -----------------
 ```
-<<<<<<< HEAD
 where each group of file is seperated by the dashes. Note that the ```block_size``` argument is provided in bytes (B) in this example, but also has the options for kilobytes (KB), megabytes (MB), and gigabytes (GB).  
-=======
-where each group of file is seperated by the dashes. Note that the ```block_size``` argument is provided in bytes (B) in this example, but also has the options for kilobytes (KB), megabytes (MB), and gigabytes (GB).  
->>>>>>> Tuple
+
+## Examples 
+Complete examples of each of the modules mentioned above can be found in the `tests` directory. To run the tests, first run `python generate_data.py`. After generating the test data, any of the examples can be ran. 
