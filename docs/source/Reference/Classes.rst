@@ -2,6 +2,9 @@
 Classes
 =======
 
-.. autosummary:: pattern.Pattern.Pattern
+.. autosummary::
+   :toctree: stubs
+
+   pattern.FilePattern.FilePattern
 
    
