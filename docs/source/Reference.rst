@@ -1,9 +1,9 @@
 ============================
-Class Reference
+Class and Function Reference
 ============================
 
-.. toctree:: 
+.. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   Reference/stubs/pattern.Pattern.Pattern
+   Reference/Classes
