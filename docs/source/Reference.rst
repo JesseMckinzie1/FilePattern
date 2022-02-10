@@ -6,4 +6,4 @@ Class Reference
    :maxdepth: 2
    :caption: Contents:
 
-   Reference/Classes/stubs
+   Reference/stubs/pattern.Pattern.Pattern
