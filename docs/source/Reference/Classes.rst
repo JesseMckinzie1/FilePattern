@@ -5,5 +5,5 @@ Classes
 .. autosummary::
    :toctree: stubs
 
-   pattern
+   pattern.Pattern.Pattern
    
