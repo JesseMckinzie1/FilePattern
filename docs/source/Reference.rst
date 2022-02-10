@@ -7,4 +7,3 @@ Class Reference
    :caption: Contents:
 
    Reference/Classes
-   Reference/Bioasdnfoiawnef
