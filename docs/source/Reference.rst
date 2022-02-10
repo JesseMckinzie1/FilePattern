@@ -3,7 +3,7 @@ Class Reference
 ============================
 
 .. toctree:: 
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Contents:
 
-   Reference/Classes/Stubs
+   Reference/Classes
