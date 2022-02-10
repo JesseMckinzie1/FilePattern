@@ -6,4 +6,4 @@ Class Reference
    :maxdepth: 1
    :caption: Contents:
 
-   Reference/Classes
+   Reference/Classes/Stubs
