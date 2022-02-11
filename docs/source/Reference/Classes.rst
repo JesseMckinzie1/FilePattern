@@ -2,8 +2,5 @@
 Classes
 =======
 
-.. autosummary::
-   :toctree: stubs
-
-   pattern.Pattern
+.. autoclass:: Pattern
    
