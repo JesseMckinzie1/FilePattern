@@ -2,8 +2,9 @@
 Classes
 =======
 
-.. autosummary::
-   :toctree: stubs
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-   pattern.Pattern.Pattern
+   stubs/pattern.Pattern.Pattern
    
