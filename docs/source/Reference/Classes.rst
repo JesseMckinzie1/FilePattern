@@ -2,7 +2,8 @@
 Classes
 =======
 
-.. currentmodule:: pattern 
+.. autosummary::
+   :toctree: stubs
 
-.. autoclass:: Pattern
+   pattern.Pattern
    
